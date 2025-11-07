@@ -1,0 +1,100 @@
+body {
+    background-image: url(background.png);
+    background-size: 100%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    margin: 0;
+    text-align: center;
+}
+
+/* div */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px 40px;
+    background-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* title */
+.title {
+    font-size: 27px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin: 0;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+
+/* button login */
+.button {
+    font-family: sans-serif;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border: 0;
+    border-radius: 5px;
+    width: 230px;
+    height: 30px;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+
+/* dont have an account */
+.additional {
+    font-family: sans-serif;
+    font-size: 12px;
+    margin: 0px;
+    color: #FFFFFF;
+    margin-top: 13px;
+}
+
+.additional > a {
+    font-family: sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    color: #50a7de;
+}
+
+.additional > a:hover {
+    opacity: 0.7;
+}
+
+/* input */
+.input {
+    width: 230px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid #ffffffb0;
+    padding: 5px;
+    background: transparent;
+    color: #FFFFFF;
+    cursor: text;
+    transition: border-bottom-color 0.2s;
+}
+
+.input:focus {
+    border-bottom-color: #FFFFFF;
+}
+
+.input::placeholder {
+    color: white;
+    opacity: 0.7;
+}
