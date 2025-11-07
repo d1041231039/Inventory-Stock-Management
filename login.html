@@ -1,23 +1,21 @@
 <html>
     <head>
-        <title>Inventory Management - Login</title>
+        <title>SIGMA</title>
         <link rel="stylesheet" href="login.css">
     </head>
     <body>
         <div class="container">
+            <p class="title">Login</p>
             <form method="post" action="home.html">
-                <label class="label" for="email">Email</label>
+                <input class="input" type="text" placeholder="Enter your email" id="email">
                 <br>
-                <input class="email" type="text" placeholder="Enter your email" id="email">
+                <input class="input" type="password" placeholder="Enter your password" id="password">
                 <br>
-                <label class="label" for="password">Password</label>
-                <br>
-                <input class="password" type="password" placeholder="Enter your password" id="password">
-                <br>
-                <button class="sign" type="submit">
-                    Sign-in
+                <button class="button" type="submit">
+                    Login
                 </button>
             </form>
+            <p class="additional">Don't have an account? <a href="register.html">Sign up</a></p>
         </div>
     </body>
 </html>
