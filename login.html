@@ -1,15 +1,19 @@
 <html>
     <head>
         <title>Inventory Management - Login</title>
+        <link rel="stylesheet" href="login.css">
     </head>
     <body>
         <div class="container">
             <form method="post" action="home.html">
-                <label class="label">Email</label>
-                <input class="email" type="text" placeholder="Enter your email">
-                <label class="label">Password</label>
-                <input class="password" type="password" placeholder="Enter your password">
-
+                <label class="label" for="email">Email</label>
+                <br>
+                <input class="email" type="text" placeholder="Enter your email" id="email">
+                <br>
+                <label class="label" for="password">Password</label>
+                <br>
+                <input class="password" type="password" placeholder="Enter your password" id="password">
+                <br>
                 <button class="sign" type="submit">
                     Sign-in
                 </button>
