@@ -1,0 +1,136 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+.sidebar {
+    position: fixed;
+    border-right: 3px #C8C8C880 solid;
+    height: 88vh;
+    width: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-up,
+.sidebar-down {
+    list-style-type: none;
+}
+
+.sidebar-up > li,
+.sidebar-down > li {
+    display: flex;
+    height: 5vh;
+    width: 25vh;
+    margin: 1vh 0vh 2vh 0vh;
+    align-items: center;
+    padding-left: 2vh;
+    gap: 1vh;
+    margin-left: -30px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.mark {
+    background-color: #C8C8C880;
+}
+
+.sidebar-up > li:hover,
+.sidebar-down>li:hover {
+    background-color: #D3A15D;
+}
+
+.sidebar-up > li > a,
+.sidebar-down > li > a {
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+
+.logout:hover {
+    background-color: #E54332;
+}
+
+.update-stock {
+    margin-left: 260px;
+    padding: 30px;
+    height: 88vh;
+    background-color: #fff;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.update-stock h2 {
+    color: #4B1F14;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.success {
+    color: green;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.error {
+    color: red;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.stock-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stock-table th,
+.stock-table td {
+    border-bottom: 1.5px solid #ddd;
+    text-align: left;
+    padding: 10px;
+}
+
+.stock-table th {
+    background-color: #FFF8F3;
+    color: #4B1F14;
+    border-top: 2px solid #D3A15D;
+}
+
+.update-form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.update-form > input,
+.update-form > select {
+    padding: 6px 8px;
+    border: 1.2px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.update-form > button {
+    background-color: #D3A15D;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.update-form > button:hover {
+    background-color: #b18249;
+}
+
+.empty {
+    text-align: center;
+    color: #4B1F14;
+    font-style: italic;
+    padding: 20px;
+}
