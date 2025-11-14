@@ -53,11 +53,11 @@ body {
 }
 
 .additem {
-    margin-left: 260px;
+    margin-left: 30vh;
     padding: 50px;
+    overflow-y: auto;
     height: 88vh;
     box-sizing: border-box;
-    background-color: #FFF8F3; /* krem lembut */
 }
 
 .form-container {
@@ -73,7 +73,7 @@ body {
 .form-container > h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: #4B1F14; /* coklat utama */
+    color: #4B1F14;
     font-weight: 700;
 }
 
