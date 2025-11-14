@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+}
+
+.logo {
+    width: 250px;
+    height: 65px;
+    object-fit: cover;
+}
+
+.header {
+    border-bottom: 3px solid;
+    height: 15dvh;
+}
+
+
+div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info {
+    padding-right: 15px;
+
+}
+
+.profile {
+    display: flex;
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    object-position: top;
+    margin-right: 10px;
+}
