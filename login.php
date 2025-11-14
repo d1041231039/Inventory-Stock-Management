@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION['id_user'] = $user['ID_User'];
             $_SESSION['username'] = $user['Username'];
-            header("Location: home.php");
+            header("Location: index.php");
             exit();
         } else {
             echo "<script>alert('Email or password wrong!'); window.history.back();</script>";
