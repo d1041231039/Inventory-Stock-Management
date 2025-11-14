@@ -124,10 +124,6 @@ $result = $conn->query($sql);
             ?>
         </div>
     </main>
-
-    <footer>
-        <?php include 'footer.html'; ?>
-    </footer>
     <script src="filter.js" defer></script>
 </body>
 

@@ -128,10 +128,5 @@ $recentQuery = $conn->query("SELECT * FROM stock WHERE ID_User=$id_user ORDER BY
             </table>
         </section>
     </main>
-
-    <footer>
-        <?php include 'footer.html'; ?>
-    </footer>
 </body>
-
 </html>

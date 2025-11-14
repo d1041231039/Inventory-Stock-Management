@@ -161,11 +161,6 @@ $listResult = $listStmt->get_result();
             </table>
         </div>
     </main>
-
-    <footer>
-        <?php include 'footer.html'; ?>
-    </footer>
-
     <script>
         function confirmUpdate(form) {
             const qty = form.perubahan.value;
