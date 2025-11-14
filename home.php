@@ -36,7 +36,7 @@ $recentQuery = $conn->query("SELECT * FROM stock WHERE ID_User=$id_user ORDER BY
 
 <body>
     <header>
-        <?php include 'header.html'; ?>
+        <?php include 'header.php'; ?>
     </header>
 
     <nav class="sidebar">

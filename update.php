@@ -68,7 +68,7 @@ $listResult = $listStmt->get_result();
 
 <body>
     <header>
-        <?php include 'header.html'; ?>
+        <?php include 'header.php'; ?>
     </header>
 
     <nav class="sidebar">

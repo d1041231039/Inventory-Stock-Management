@@ -37,7 +37,7 @@ $result = $conn->query($sql);
 
 <body>
     <header>
-        <?php include 'header.html'; ?>
+        <?php include 'header.php'; ?>
     </header>
 
     <nav class="sidebar">
