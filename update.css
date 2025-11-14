@@ -56,10 +56,9 @@ body {
 }
 
 .update-stock {
-    margin-left: 260px;
+    margin-left: 30vh;
     padding: 30px;
     height: 88vh;
-    background-color: #fff;
     box-sizing: border-box;
     overflow-y: auto;
 }
