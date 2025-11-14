@@ -1,28 +1,26 @@
-body {
-    font-family: sans-serif;
+.header {
+    margin: 0px;
+    padding: 0px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.header-div {
+    height: 13vh;
+    border-bottom: 3px solid #C8C8C880;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin: 0;
 }
 
 .logo {
-    width: 250px;
+    width: 220px;
     height: 65px;
     object-fit: cover;
-}
-
-.header {
-    border-bottom: 3px solid;
-    height: 15dvh;
-}
-
-
-div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.info {
-    padding-right: 15px;
-
+    transform: scale(1.2);
 }
 
 .profile {
@@ -32,5 +30,10 @@ div {
     width: 50px;
     object-fit: cover;
     object-position: top;
-    margin-right: 10px;
+}
+
+.info {
+    border: 2px solid;
+    border-radius: 30px;
+    margin-right: 3vh;
 }
