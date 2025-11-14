@@ -1,0 +1,147 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+	margin: 0px;
+}
+
+.sidebar {
+	position: fixed;
+	border-right: 3px #C8C8C880 solid;
+	height: 88vh;
+	width: 30vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.sidebar-up,
+.sidebar-down {
+	list-style-type: none;
+}
+
+.sidebar-up > li,
+.sidebar-down > li {
+	display: flex;
+	height: 5vh;
+	width: 25vh;
+	margin: 1vh 0vh 2vh 0vh;
+	align-items: center;
+	padding-left: 2vh;
+	gap: 1vh;
+	margin-left: -30px;
+	border-radius: 10px;
+	transition: 0.2s;
+
+}
+
+.mark {
+	background-color: #C8C8C880;
+}
+
+.sidebar-up > li:hover,
+.sidebar-down > li:hover {
+	background-color: #D3A15D;
+}
+
+.sidebar-up > li > a,
+.sidebar-down > li > a {
+	text-decoration: none;
+	color: black;
+	padding: 5px;
+}
+
+.logout:hover {
+	background-color: #E54332;
+}
+
+.dashboard {
+	margin-left: 30vh;
+	padding: 20px;
+	overflow-y: auto;
+	height: 88vh;
+	box-sizing: border-box;
+}
+
+.dashboard-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 24px;
+}
+
+.dashboard-header > h1 {
+	font-size: 24px;
+	color: #4B1F14;
+}
+
+.dashboard-header > span {
+	color: #D3A15D;
+}
+
+.dashboard-header > p {
+	color: #666;
+	font-size: 14px;
+}
+
+.summary-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.card {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	padding: 16px;
+	text-align: center;
+	transition: transform 0.2s ease;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+}
+
+.summary-cards > h2 {
+	color: #4B1F14;
+	font-size: 16px;
+	margin-bottom: 8px;
+}
+
+.summary-cards > p {
+	font-size: 20px;
+	font-weight: bold;
+	color: #D3A15D;
+}
+
+.recent-updates h2 {
+	margin-bottom: 12px;
+	color: #4B1F14;
+}
+
+.recent-updates table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.recent-updates th,
+.recent-updates td {
+	padding: 10px 12px;
+	text-align: left;
+	border-bottom: 2px solid #eee;
+}
+
+.recent-updates th {
+	background-color: #D3A15D;
+	color: #4B1F14;
+}
+
+.recent-updates tr:hover {
+	background-color: #f9f9f9;
+}
