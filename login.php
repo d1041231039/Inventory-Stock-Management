@@ -2,23 +2,29 @@
 include 'koneksi.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$email = $_POST['email'];
-$password = $_POST['password'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-$sql = "SELECT * FROM user WHERE Email='$email' AND Password='$password'";
-$result = $conn->query($sql);
+    $sql = "SELECT * FROM user WHERE Email='$email'";
+    $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    session_start();
-    $user = $result->fetch_assoc();
-    $_SESSION['id_user'] = $user['ID_User'];
-    $_SESSION['username'] = $user['Username'];
-    header("Location: home.php");
-    exit();
-} else {
-    echo "<script>alert('Email atau password salah!'); window.history.back();</script>";
-    exit();
-}
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+
+        if (password_verify($password, $user['Password'])) {
+            session_start();
+            $_SESSION['id_user'] = $user['ID_User'];
+            $_SESSION['username'] = $user['Username'];
+            header("Location: home.php");
+            exit();
+        } else {
+            echo "<script>alert('Email or password wrong!'); window.history.back();</script>";
+            exit();
+        }
+    } else {
+        echo "<script>alert('Email or password wrong!'); window.history.back();</script>";
+        exit();
+    }
 }
 
 $conn->close();
