@@ -51,8 +51,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_stock'], $_POST['p
     }
 }
 
-$listStmt = $conn->prepare("SELECT ID_Stock, Nama_Barang, Kategori, Jumlah_Barang, Satuan, Tanggal_Pembaruan FROM stock WHERE ID_User = ? ORDER BY Nama_Barang ASC");
-$listStmt->bind_param("i", $id_user);
+$kategori_query = $conn->prepare("SELECT DISTINCT Kategori FROM stock WHERE ID_User = ? ORDER BY Kategori ASC");
+$kategori_query->bind_param("i", $id_user);
+$kategori_query->execute();
+$kategori_result = $kategori_query->get_result();
+
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$filter = isset($_GET['filter']) ? trim($_GET['filter']) : '';
+
+$sql = "SELECT ID_Stock, Nama_Barang, Kategori, Jumlah_Barang, Satuan, Tanggal_Pembaruan 
+        FROM stock 
+        WHERE ID_User = ?";
+
+$params = [$id_user];
+$types = "i";
+
+if (!empty($search)) {
+    $sql .= " AND Nama_Barang LIKE ?";
+    $params[] = "%$search%";
+    $types .= "s";
+}
+
+if (!empty($filter)) {
+    $sql .= " AND Kategori = ?";
+    $params[] = $filter;
+    $types .= "s";
+}
+
+$sql .= " ORDER BY Nama_Barang ASC";
+
+$listStmt = $conn->prepare($sql);
+$listStmt->bind_param($types, ...$params);
 $listStmt->execute();
 $listResult = $listStmt->get_result();
 ?>
@@ -118,7 +147,29 @@ $listResult = $listStmt->get_result();
         <?php if ($error): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
+        
+        <form method="GET" class="filter-bar">
+            <input type="text" name="search" placeholder="Search item..." value="<?= htmlspecialchars($search) ?>">
 
+            <select name="filter">
+                <option value="">All Categories</option>
+                <?php
+                if ($kategori_result->num_rows > 0) {
+                    while ($row = $kategori_result->fetch_assoc()) {
+                        $selected = ($filter == $row['Kategori']) ? 'selected' : '';
+                        echo "<option value='{$row['Kategori']}' $selected>{$row['Kategori']}</option>";
+                    }
+                }
+                ?>
+            </select>
+
+            <button type="submit">Apply</button>
+
+            <?php if (!empty($search) || !empty($filter)): ?>
+                <a href="update.php" class="reset-btn">Reset</a>
+            <?php endif; ?>
+        </form>
+        
         <div class="table-wrap">
             <table class="stock-table">
                 <thead>
@@ -161,14 +212,8 @@ $listResult = $listStmt->get_result();
             </table>
         </div>
     </main>
-    <script>
-        function confirmUpdate(form) {
-            const qty = form.perubahan.value;
-            const aksi = form.aksi.value;
-            if (!qty || qty <= 0) return false;
-            return true;
-        }
-    </script>
+
+    <script src="update.js" defer></script>
 </body>
 
 </html>
