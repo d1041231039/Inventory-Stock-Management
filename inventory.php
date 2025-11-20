@@ -9,23 +9,33 @@ if (!isset($_SESSION['id_user'])) {
 
 $id_user = $_SESSION['id_user'];
 
-$kategori_query = "SELECT DISTINCT Kategori FROM stock WHERE ID_User = $id_user ORDER BY Kategori ASC";
-$kategori_result = $conn->query($kategori_query);
-
-$sql = "SELECT * FROM stock WHERE ID_User = $id_user";
+$kategori_result = $conn->query("SELECT DISTINCT Kategori FROM stock WHERE ID_User = $id_user ORDER BY Kategori ASC");
 
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 $filter = isset($_GET['filter']) ? trim($_GET['filter']) : '';
 
+$sql = "SELECT * FROM stock WHERE ID_User = ?";
+
+$params = [$id_user];
+$types = "i";
+
 if (!empty($search)) {
-    $sql .= " AND Nama_Barang LIKE '%$search%'";
+    $sql .= " AND Nama_Barang LIKE ?";
+    $params[] = "%$search%";
+    $types .= "s";
 }
 if (!empty($filter)) {
-    $sql .= " AND Kategori = '$filter'";
+    $sql .= " AND Kategori = ?";
+    $params[] = $filter;
+    $types .= "s";
 }
 
 $sql .= " ORDER BY Jumlah_Barang ASC";
-$result = $conn->query($sql);
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param($types, ...$params);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <html>
