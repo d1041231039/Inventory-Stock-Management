@@ -11,31 +11,8 @@ $id_user = $_SESSION['id_user'];
 
 $kategori_result = $conn->query("SELECT DISTINCT Kategori FROM stock WHERE ID_User = $id_user ORDER BY Kategori ASC");
 
-$search = isset($_GET['search']) ? trim($_GET['search']) : '';
-$filter = isset($_GET['filter']) ? trim($_GET['filter']) : '';
-
-$sql = "SELECT * FROM stock WHERE ID_User = ?";
-
-$params = [$id_user];
-$types = "i";
-
-if (!empty($search)) {
-    $sql .= " AND Nama_Barang LIKE ?";
-    $params[] = "%$search%";
-    $types .= "s";
-}
-if (!empty($filter)) {
-    $sql .= " AND Kategori = ?";
-    $params[] = $filter;
-    $types .= "s";
-}
-
-$sql .= " ORDER BY Jumlah_Barang ASC";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param($types, ...$params);
-$stmt->execute();
-$result = $stmt->get_result();
+$sql = "SELECT * FROM stock WHERE ID_User = $id_user ORDER BY Jumlah_Barang ASC";
+$result = $conn->query($sql);
 ?>
 
 <html>
@@ -90,25 +67,19 @@ $result = $stmt->get_result();
     <main class="inventory">
         <h2>Your Stock List</h2>
 
-        <form method="GET" class="filter-bar">
-            <input type="text" name="search" placeholder="Search item..." value="<?= htmlspecialchars($search) ?>">
+        <form class="filter-bar" onsubmit="return false;">
+            <input type="text" name="search" placeholder="Search item...">
 
             <select name="filter">
                 <option value="">All Categories</option>
                 <?php
                 if ($kategori_result->num_rows > 0) {
                     while ($row = $kategori_result->fetch_assoc()) {
-                        $selected = ($filter == $row['Kategori']) ? 'selected' : '';
-                        echo "<option value='{$row['Kategori']}' $selected>{$row['Kategori']}</option>";
+                        echo "<option value='{$row['Kategori']}'>{$row['Kategori']}</option>";
                     }
                 }
                 ?>
             </select>
-
-            <button type="submit">Apply</button>
-            <?php if (!empty($search) || !empty($filter)): ?>
-                <a href="inventory.php" class="reset-btn">Reset</a>
-            <?php endif; ?>
         </form>
 
         <div class="stock-container">
@@ -134,7 +105,7 @@ $result = $stmt->get_result();
             ?>
         </div>
     </main>
-    <script src="filter.js" defer></script>
+    <script src="inventory.js" defer></script>
 </body>
 
 </html>
