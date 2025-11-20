@@ -84,15 +84,16 @@ $listStmt = $conn->prepare($sql);
 $listStmt->bind_param($types, ...$params);
 $listStmt->execute();
 $listResult = $listStmt->get_result();
+
+$listStmt->close();
+$conn->close();
 ?>
-<!doctype html>
-<html lang="en">
+
+<html>
 
 <head>
-    <meta charset="utf-8" />
     <title>SIGMA - Update Stock</title>
     <link rel="stylesheet" href="update.css">
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 
 <body>
@@ -217,7 +218,3 @@ $listResult = $listStmt->get_result();
 </body>
 
 </html>
-<?php
-$listStmt->close();
-$conn->close();
-?>
