@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p class="error"><?= $error ?></p>
             <?php endif; ?>
 
-            <form method="POST" action="">
+            <form method="POST">
                 <div class="form-group">
                     <label for="nama_barang">Item Name</label>
                     <input type="text" id="nama_barang" name="nama_barang" placeholder="Enter item name" required>
