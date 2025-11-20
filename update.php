@@ -7,7 +7,7 @@ if (!isset($_SESSION['id_user'])) {
     exit();
 }
 
-$id_user = intval($_SESSION['id_user']);
+$id_user = $_SESSION['id_user'];
 $success = '';
 $error = '';
 
