@@ -9,9 +9,6 @@ if (!isset($_SESSION['id_user'])) {
 
 $id_user = $_SESSION['id_user'];
 
-$sql = "SELECT * FROM stock WHERE ID_User = $id_user ORDER BY Jumlah_Barang ASC";
-$result = $conn->query($sql);
-
 $totalQuery = $conn->query("SELECT COUNT(*) AS total FROM stock WHERE ID_User=$id_user");
 $total = $totalQuery->fetch_assoc()['total'];
 
