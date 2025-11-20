@@ -56,36 +56,12 @@ $kategori_query->bind_param("i", $id_user);
 $kategori_query->execute();
 $kategori_result = $kategori_query->get_result();
 
-$search = isset($_GET['search']) ? trim($_GET['search']) : '';
-$filter = isset($_GET['filter']) ? trim($_GET['filter']) : '';
-
 $sql = "SELECT ID_Stock, Nama_Barang, Kategori, Jumlah_Barang, Satuan, Tanggal_Pembaruan 
         FROM stock 
-        WHERE ID_User = ?";
+        WHERE ID_User = $id_user
+        ORDER BY Nama_Barang ASC";
 
-$params = [$id_user];
-$types = "i";
-
-if (!empty($search)) {
-    $sql .= " AND Nama_Barang LIKE ?";
-    $params[] = "%$search%";
-    $types .= "s";
-}
-
-if (!empty($filter)) {
-    $sql .= " AND Kategori = ?";
-    $params[] = $filter;
-    $types .= "s";
-}
-
-$sql .= " ORDER BY Nama_Barang ASC";
-
-$listStmt = $conn->prepare($sql);
-$listStmt->bind_param($types, ...$params);
-$listStmt->execute();
-$listResult = $listStmt->get_result();
-
-$listStmt->close();
+$result = $conn->query($sql);
 $conn->close();
 ?>
 
@@ -149,26 +125,19 @@ $conn->close();
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
         
-        <form method="GET" class="filter-bar">
-            <input type="text" name="search" placeholder="Search item..." value="<?= htmlspecialchars($search) ?>">
+        <form class="filter-bar">
+            <input type="text" name="search" placeholder="Search item...">
 
-            <select name="filter">
+            <select name="filter" onsubmit="return false;">
                 <option value="">All Categories</option>
                 <?php
                 if ($kategori_result->num_rows > 0) {
                     while ($row = $kategori_result->fetch_assoc()) {
-                        $selected = ($filter == $row['Kategori']) ? 'selected' : '';
-                        echo "<option value='{$row['Kategori']}' $selected>{$row['Kategori']}</option>";
+                        echo "<option value='{$row['Kategori']}'>{$row['Kategori']}</option>";
                     }
                 }
                 ?>
             </select>
-
-            <button type="submit">Apply</button>
-
-            <?php if (!empty($search) || !empty($filter)): ?>
-                <a href="update.php" class="reset-btn">Reset</a>
-            <?php endif; ?>
         </form>
         
         <div class="table-wrap">
@@ -183,8 +152,8 @@ $conn->close();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if ($listResult && $listResult->num_rows > 0): ?>
-                        <?php while ($r = $listResult->fetch_assoc()): ?>
+                    <?php if ($result && $result->num_rows > 0): ?>
+                        <?php while ($r = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?= htmlspecialchars($r['Nama_Barang']) ?></td>
                                 <td><?= htmlspecialchars($r['Kategori']) ?></td>
